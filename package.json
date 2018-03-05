@@ -2,14 +2,21 @@
   "name": "viacep-api",
   "version": "1.0.0",
   "description": "Api para consulta de cep utilizando o serviço viacep.",
-  "main": "index.js",
+  "main": ".src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jeam Alves",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeanmalves/viacep-api.git"
+  },
   "dependencies": {
     "express": "^4.16.2",
     "request": "^2.83.0"
+  },
+  "engines": {
+    "node": "~0.10.22"
   }
 }
