@@ -21,8 +21,13 @@ router.route('/cep/:cep')
     request(url, (error, response, body) => {
         if(error || !body)
             res.send(error)
-        const endereco = JSON.parse(body);
-        res.json(endereco);
+        
+        if (response.statusCode === 200) {
+          const endereco = JSON.parse(body);
+          res.json(endereco);
+        }
+
+        res.status(response.statusCode).send({ error: `${response.statusCode}`}); 
     })
   });
  
