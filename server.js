@@ -14,11 +14,11 @@ router.get('/', function(req, res) {
 });
 
 router.route('/cep/:cep')
-  .get((req, res) => {
+  .get(function(req, res) {
     var cep = req.params.cep;
     var url = `${endPoint}/${cep}/${returnType}`;
 
-    request(url, (error, response, body) => {
+    request(url, function(error, response, body) {
         if(error || !body)
             res.send(error)
         
@@ -27,18 +27,18 @@ router.route('/cep/:cep')
           res.json(endereco);
         }
 
-        res.status(response.statusCode).send({ error: `${response.statusCode}`}); 
-    })
+        res.status(response.statusCode).send({ error: `${response.statusCode}` }); 
+    });
   });
  
 router.route('/address/:uf/:city/:street')
-  .get((req, res) => {
+  .get(function(req, res) {
     var uf = req.params.uf;
     var city = req.params.city;
     var street = req.params.street;
     var url = `${endPoint}/${uf}/${city}/${street}/${returnType}`;
 
-    request(url, (error, response, body) => {
+    request(url, function(error, response, body) {
         if(error || !body)
             res.send(error)
 
@@ -53,15 +53,15 @@ router.route('/address/:uf/:city/:street')
           }); 
         }
 
-        res.status(response.statusCode).send({ error: `${response.statusCode}`}); 
+        res.status(response.statusCode).send({ error: `${response.statusCode}` }); 
     });
   });
 
   // Middleware
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
     var _send = res.send;
     var sent = false;
-    res.send = (data) => {
+    res.send = function(data) {
         if(sent) return;
         _send.bind(res)(data);
         sent = true;
@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 // prefixa as rotas com o valor /api
 app.use('/api', router);
 
-app.listen(port, () => {
+app.listen(port, function() {
   console.log(`Server running at http://localhost:${port}`);
   console.log('To shutdown the server: ctrl + c');
-})
+});
