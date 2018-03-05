@@ -1,0 +1,11 @@
+{
+  "name": "viacep-api",
+  "version": "1.0.0",
+  "description": "Api para consulta de cep utilizando o serviço viacep.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeam Alves",
+  "license": "ISC"
+}
