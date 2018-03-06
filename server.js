@@ -1,7 +1,11 @@
 const express = require('express');
 const request = require('request');
+const http = require('http');
+
 const app = express();
 const port = process.env.PORT || 8000;
+
+var server = http.createServer(app);
 
 var router  = express.Router();
 
@@ -57,7 +61,7 @@ router.route('/address/:uf/:city/:street')
     });
   });
 
-  // Middleware
+// Middleware
 app.use(function(req, res, next) {
     var _send = res.send;
     var sent = false;
@@ -69,11 +73,10 @@ app.use(function(req, res, next) {
     next();
 });
 
-
 // prefixa as rotas com o valor /api
 app.use('/api', router);
 
-app.listen(port, function() {
+server.listen(port, function() {
   console.log(`Server running at http://localhost:${port}`);
   console.log('To shutdown the server: ctrl + c');
 });
