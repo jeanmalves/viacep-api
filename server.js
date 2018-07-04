@@ -4,6 +4,7 @@ const http = require('http');
 
 const app = express();
 const port = process.env.PORT || 8000;
+const host = '0.0.0.0';
 
 var server = http.createServer(app);
 
@@ -76,7 +77,5 @@ app.use(function(req, res, next) {
 // prefixa as rotas com o valor /api
 app.use('/api', router);
 
-server.listen(port, function() {
-  console.log(`Server running at http://localhost:${port}`);
-  console.log('To shutdown the server: ctrl + c');
-});
+server.listen(port, host);
+  console.log(`Server running at http://${host}:${port}`);
